@@ -25,14 +25,7 @@ public class PlanetButtonHandler : MonoBehaviour, IPointerDownHandler
 
         if (planetManager.GetCurrentPlanetIndex() == planetIndex)
         {
-            // Здесь можно либо вызвать метод, принимающий индекс, либо напрямую добавить фиксированную сумму.
-            // Например, если в PlanetManager реализован метод:
-            // public void AddFixedAmountToPlanet(int planetIndex)
-            // Тогда делаем:
-            planetManager.AddFixedAmountToPlanet(planetIndex);
-
-            // Либо, если у вас метод без параметра для текущей планеты:
-            // planetManager.AddFixedAmountToCurrentPlanet();
+            planetManager.AddFixedAmountToCurrentPlanet();
         }
         else
         {

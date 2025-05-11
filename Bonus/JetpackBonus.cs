@@ -25,6 +25,5 @@ public class JetpackBonus : Bonus
             playerController.SetInvincibility(false);
             playerController.SetActiveBonus(false);
         }
-        Destroy(gameObject);
     }
 }

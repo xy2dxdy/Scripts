@@ -25,6 +25,5 @@ public class TurboBoostBonus : Bonus
             playerController.SetInvincibility(false);
             playerController.SetActiveBonus(false);
         }
-        Destroy(gameObject);
     }
 }

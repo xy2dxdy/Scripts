@@ -37,7 +37,6 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        // –асчЄт позиции спавна относительно игрока.
         // ¬ыбираем случайную сторону: 0 Ч верх, 1 Ч низ, 2 Ч лево, 3 Ч право.
         int randomSide = Random.Range(0, 4);
         Vector3 spawnPosition = Vector3.zero;

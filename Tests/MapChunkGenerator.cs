@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class MapChunkGenerator : MonoBehaviour
 {
-    public GameObject[] chunkPrefabs; // Префабы чанков
-    public GameObject[] obstacles; // Префабы препятствий
-    public GameObject[] bonuses; // Префабы бонусов
-    public GameObject[] coins; // Префабы монет
-    public float chunkSize = 50f; // Размер одного чанка
-    public int initialChunks = 9; // Количество начальных чанков
-    public int numObstacles = 10; // Количество препятствий на чанк
-    public int numBonuses = 5; // Количество бонусов на чанк
-    public int numCoins = 5; // Количество монет на чанк
+    public GameObject[] chunkPrefabs;
+    public GameObject[] obstacles;
+    public GameObject[] bonuses;
+    public GameObject[] coins;
+    public float chunkSize = 50f;
+    public int initialChunks = 9;
+    public int numObstacles = 10;
+    public int numBonuses = 5;
+    public int numCoins = 5;
 
-    public List<GameObject> activeChunks = new List<GameObject>(); // Список активных чанков
-    public Vector3 lastPlayerChunkPosition; // Последняя позиция игрока на чанке
-    public Transform playerTransform; // Ссылка на трансформ игрока
+    public List<GameObject> activeChunks = new List<GameObject>();
+    public Vector3 lastPlayerChunkPosition;
+    public Transform playerTransform;
 
     public void Start()
     {
-        // Найти объект игрока по тегу
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -31,7 +30,6 @@ public class MapChunkGenerator : MonoBehaviour
             Debug.LogError("Player not found! Please ensure the player object has the 'Player' tag.");
         }
 
-        // Спавн начальных чанков
         Vector3 initialPosition = Vector3.zero;
         SpawnInitialChunks(initialPosition);
         lastPlayerChunkPosition = initialPosition;
@@ -73,7 +71,7 @@ public class MapChunkGenerator : MonoBehaviour
             centerChunkPosition + new Vector3(chunkSize, 0, -chunkSize),
             centerChunkPosition + new Vector3(-chunkSize, 0, chunkSize),
             centerChunkPosition + new Vector3(-chunkSize, 0, -chunkSize),
-            centerChunkPosition // Центр, текущая позиция чанка
+            centerChunkPosition 
         };
 
         foreach (var position in initialPositions)
@@ -97,7 +95,7 @@ public class MapChunkGenerator : MonoBehaviour
             centerChunkPosition + new Vector3(chunkSize, 0, -chunkSize),
             centerChunkPosition + new Vector3(-chunkSize, 0, chunkSize),
             centerChunkPosition + new Vector3(-chunkSize, 0, -chunkSize),
-            centerChunkPosition // Центр, текущая позиция чанка
+            centerChunkPosition 
         };
 
         foreach (var position in potentialPositions)

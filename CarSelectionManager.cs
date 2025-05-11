@@ -11,6 +11,7 @@ public class CarSelectionManager : MonoBehaviour
     public Button rightButton;
     public Text coinText;
     public Text plasmaText;
+    public Text shipParametersText;
 
     private int selectedCarIndex = 0;
     private GameObject currentCarInstance;
@@ -33,12 +34,14 @@ public class CarSelectionManager : MonoBehaviour
     {
         selectedCarIndex = (selectedCarIndex + 1) % carPrefabs.Length;
         UpdateCarDisplay();
+        PlayerPrefs.SetInt("SelectedCarIndex", selectedCarIndex);
     }
 
     public void SelectPreviousCar()
     {
         selectedCarIndex = (selectedCarIndex - 1 + carPrefabs.Length) % carPrefabs.Length;
         UpdateCarDisplay();
+        PlayerPrefs.SetInt("SelectedCarIndex", selectedCarIndex);
     }
 
     private void UpdateCarDisplay()
@@ -58,7 +61,34 @@ public class CarSelectionManager : MonoBehaviour
                 rb.useGravity = false;
                 rb.isKinematic = true;
             }
+            Car carComponent = currentCarInstance.GetComponent<Car>();
+            Debug.Log(carComponent);
+            if (carComponent != null)
+            { 
+                float carSpeed = PlayerPrefs.GetFloat("CarSpeed" + carComponent.carID);
+                if (carSpeed == 0)
+                {
+                    PlayerPrefs.SetFloat("CarSpeed" + carComponent.carID, carComponent.speed);
+                    carSpeed = carComponent.speed;
+                    PlayerPrefs.Save();
+                }
+                int carArmor = PlayerPrefs.GetInt("CarArmor" + carComponent.carID);
+                if(carArmor == 0)
+                {
+                    PlayerPrefs.SetInt("CarArmor" + carComponent.carID, carComponent.armor);
+                    carArmor = carComponent.armor;
+                    PlayerPrefs.Save();
+                }
+                shipParametersText.text = "Speed: " + carSpeed.ToString("F1") + "\n" +
+                                            "Turn Speed: " + carComponent.turnSpeed.ToString("F1") + "\n" +
+                                            "Armor: " +carArmor.ToString();
+            }
+            else
+            {
+                shipParametersText.text = "Parameters not available";
+            }
         }
+
     }
 
 

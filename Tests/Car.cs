@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    public float speed; // Скорость автомобиля
-    public float turnSpeed; // Скорость поворота
-    public int armor; // Броня автомобиля
+    public float speed;
+    public float turnSpeed;
+    public int armor;
 
     void Start()
     {

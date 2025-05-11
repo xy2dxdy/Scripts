@@ -6,6 +6,8 @@ public abstract class Bonus : MonoBehaviour
     public float duration = 5f;
     public float warningDuration = 2f;
 
+    public Sprite icon;
+
     public void ActivateBonus(GameObject player)
     {
         transform.SetParent(null);
@@ -21,6 +23,10 @@ public abstract class Bonus : MonoBehaviour
 
         yield return new WaitForSeconds(warningDuration);
         Deactivate(player);
+        Renderer[] renderers = player.GetComponentsInChildren<Renderer>();
+        SetRenderersEnabled(renderers, true);
+
+        Destroy(gameObject);
     }
 
     private IEnumerator BlinkPlayer(GameObject player, float blinkDuration)
@@ -42,8 +48,6 @@ public abstract class Bonus : MonoBehaviour
             yield return new WaitForSeconds(blinkInterval / 2);
             elapsed += blinkInterval / 2;
         }
-
-        SetRenderersEnabled(renderers, true);
     }
 
     private void SetRenderersEnabled(Renderer[] renderers, bool enabled)

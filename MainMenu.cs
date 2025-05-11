@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public Text totalCoinsText; // Ссылка на UI текст для отображения общего количества монет
+    public Text totalCoinsText;
     public Text plasmaText;
 
     private void Start()
@@ -26,21 +26,21 @@ public class MainMenu : MonoBehaviour
     }
     private void UpdatePlasmaText()
     {
-        int currentPlasma = PlayerPrefs.GetInt("Plasma", 0); // Загрузка количества плазмы из PlayerPrefs
+        int currentPlasma = PlayerPrefs.GetInt("Plasma", 0);
         plasmaText.text = currentPlasma.ToString(); 
     }
         private void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded; // Подписка на событие загрузки сцены
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded; // Отписка от события загрузки сцены
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        UpdateTotalCoinsText(); // Обновление текста при загрузке сцены
+        UpdateTotalCoinsText();
     }
 }

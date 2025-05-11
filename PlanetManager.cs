@@ -1,9 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using System.Numerics;
-using static UnityEditor.Progress;
-using System.Collections.Generic;
 
 public class PlanetManager : MonoBehaviour
 {
@@ -125,7 +121,8 @@ public class PlanetManager : MonoBehaviour
                 {
                     currentPlanetIndex++;
                     string newProgressKey = "Planet" + planetSettings[currentPlanetIndex].planetName + "Coins";
-                    currentProgress.currentCoins = PlayerPrefs.GetInt(newProgressKey, 0);
+                    currentProgress.currentCoins = 0;
+                    PlayerPrefs.SetInt(newProgressKey, 0);
                     currentProgress.isComplete = false;
                     PlayerPrefs.SetInt("CurrentPlanetIndex", currentPlanetIndex);
                 }
@@ -175,6 +172,7 @@ public class PlanetManager : MonoBehaviour
         {
             CoinManager.Instance.SpendCoins(fixedAmount);
 
+            Debug.Log(planetIndex + " " + currentPlanetIndex);
             if (planetIndex == currentPlanetIndex)
             {
                 currentProgress.currentCoins += fixedAmount;
@@ -192,6 +190,9 @@ public class PlanetManager : MonoBehaviour
                 currentProgress.currentCoins = settings.requiredCoins;
                 currentProgress.isComplete = true;
                 PlayerPrefs.SetInt("Planet" + settings.planetName + "Complete", 1);
+                currentPlanetIndex += 1;
+                PlayerPrefs.SetInt("CurrentPlanetIndex", 0);
+
             }
 
             PlayerPrefs.Save();

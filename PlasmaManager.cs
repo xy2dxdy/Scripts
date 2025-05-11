@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlasmaManager : MonoBehaviour
 {
-    public static PlasmaManager Instance; // Синглтон для доступа к количеству плазмы
+    public static PlasmaManager Instance;
 
-    public int totalPlasma; // Общее количество плазмы, сохраненное на устройстве
+    public int totalPlasma;
 
     private void Awake()
     {

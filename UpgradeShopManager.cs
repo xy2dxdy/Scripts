@@ -36,6 +36,8 @@ public class UpgradeShopManager : MonoBehaviour
             if (carPrefab != null)
             {
                 currentCar = carPrefab.GetComponent<Car>();
+                currentCar.speed = PlayerPrefs.GetFloat("CarSpeed" + currentCar.carID);
+                currentCar.armor = PlayerPrefs.GetInt("CarArmor" + currentCar.carID);
                 if (currentCar == null)
                 {
                     Debug.LogError("Car component not found on the car prefab");
@@ -69,7 +71,8 @@ public class UpgradeShopManager : MonoBehaviour
                 {
                     PlasmaManager.Instance.SpendPlasma(speedUpgradeCost);
                     currentCar.speed += 2;
-                    PlayerPrefs.SetFloat("CarSpeed" + currentCar.name, currentCar.speed);
+                    PlayerPrefs.SetFloat("CarSpeed" + currentCar.carID, currentCar.speed);
+                    PlayerPrefs.Save();
                 }
                 break;
             case "armor":
@@ -77,7 +80,8 @@ public class UpgradeShopManager : MonoBehaviour
                 {
                     PlasmaManager.Instance.SpendPlasma(armorUpgradeCost);
                     currentCar.armor += 1;
-                    PlayerPrefs.SetInt("CarArmor" + currentCar.name, currentCar.armor);
+                    PlayerPrefs.SetInt("CarArmor" + currentCar.carID, currentCar.armor);
+                    PlayerPrefs.Save();
                 }
                 break;
         }

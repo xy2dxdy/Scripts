@@ -17,11 +17,9 @@ public class MapChunkGeneratorTests
     [SetUp]
     public void Setup()
     {
-        // Создание объекта MapChunkGenerator
         generatorObject = new GameObject();
         mapChunkGenerator = generatorObject.AddComponent<MapChunkGenerator>();
 
-        // Создание префабов
         chunkPrefab = new GameObject("Chunk");
         obstaclePrefab = new GameObject("Obstacle");
         bonusPrefab = new GameObject("Bonus");
@@ -31,17 +29,14 @@ public class MapChunkGeneratorTests
         mapChunkGenerator.bonuses = new GameObject[] { bonusPrefab };
         mapChunkGenerator.coins = new GameObject[] { coinPrefab };
 
-        // Создание игрока
         playerObject = new GameObject("Player");
         playerObject.tag = "Player";
         playerObject.transform.position = Vector3.zero;
 
-        // Создание основной камеры
         mainCameraObject = new GameObject("MainCamera");
         var camera = mainCameraObject.AddComponent<Camera>();
-        mainCameraObject.tag = "MainCamera"; // Установка тега для камеры
+        mainCameraObject.tag = "MainCamera";
 
-        // Установка основной камеры
         camera.transform.position = new Vector3(0, 10, -10);
         camera.transform.LookAt(Vector3.zero);
     }
@@ -61,13 +56,10 @@ public class MapChunkGeneratorTests
     [UnityTest]
     public IEnumerator MapChunkGenerator_SpawnsInitialChunks()
     {
-        // Запуск метода Start, чтобы инициализировать генерацию начальных чанков
         mapChunkGenerator.Start();
 
-        // Ожидание завершения генерации чанков
         yield return null;
 
-        // Проверка, что было создано начальное количество чанков
         Assert.AreEqual(mapChunkGenerator.initialChunks, mapChunkGenerator.GetActiveChunkCount());
     }
 }

@@ -7,6 +7,8 @@ public class GameplayManager : MonoBehaviour
     public Transform carSpawnPoint;
     public Text armorLevelText;
     public Text coinText;
+    public BonusManager bonusManager;
+
 
     void Start()
     {
@@ -18,6 +20,7 @@ public class GameplayManager : MonoBehaviour
             Quaternion carRotation = Quaternion.Euler(0, -270, 0);
             GameObject carInstance = Instantiate(carPrefabs[selectedCarIndex], carSpawnPoint.position, carRotation);
             carInstance.transform.SetParent(carSpawnPoint, false);
+            bonusManager.setPlayer(carInstance);
 
             CameraFollow cameraFollow = FindObjectOfType<CameraFollow>();
             if (cameraFollow != null)
@@ -49,8 +52,8 @@ public class GameplayManager : MonoBehaviour
             {
                 Debug.LogError("CoinCollector or CoinText is not found or not assigned!");
             }
-
             PlayerController playerController = carInstance.GetComponent<PlayerController>();
+            Debug.Log(playerController);
             if (playerController != null && armorLevelText != null)
             {
                 playerController.SetArmorLevelText(armorLevelText);
@@ -60,7 +63,7 @@ public class GameplayManager : MonoBehaviour
             {
                 Debug.LogError("PlayerController or ArmorLevelText is not found or not assigned!");
             }
-
+            
         }
         else
         {

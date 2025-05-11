@@ -13,7 +13,7 @@ public class CustomScroller : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         if (!isDragging)
         {
             content.anchoredPosition += velocity * Time.deltaTime;
-            velocity *= 0.95f; // Снижает скорость для плавного замедления
+            velocity *= 0.95f;
         }
     }
 
